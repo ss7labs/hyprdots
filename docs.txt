@@ -1,0 +1,11 @@
+https://github.com/dreamsofcode-io/tmux
+https://www.youtube.com/watch?v=DzNmUNvnB04 - Tmux has forever changed the way I write code.
+
+Simple NV
+https://github.com/anthdm/.nvim
+https://www.youtube.com/watch?v=AzhSnM0uHvM - Why I Switched From VSCode To NeoVim - My Setup
+
+Overwhelmed NV
+https://github.com/NvChad/NvChad
+https://www.youtube.com/watch?v=i04sSQjd-qo - The perfect Neovim setup for Go
+https://github.com/dreamsofcode-io/neovim-go-config
