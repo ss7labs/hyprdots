@@ -1,0 +1,72 @@
+Ubuntu 23.04 using wayland by default with gnome.
+Firefox not and should be envelope with VARs by script.
+1. Check wayland env - 
+echo $XDG_SESSION_TYPE
+
+2. Compile and install new versions of wayland libs -
+sudo apt-get install -y meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev
+ libxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev
+ libvulkan-dev libvulkan-volk-dev  vulkan-validationlayers-dev libvkfft-dev libgulkan-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools l
+ibinput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev li
+bxcb-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev xdg-desktop-portal-wlr
+
+sudo apt-get install -y nala
+sudo nala install -y meson wget build-essential ninja-build cmake-extras cmake gettext gettext-base fontconfig libfontconfig-dev libffi-dev li
+bxml2-dev libdrm-dev libxkbcommon-x11-dev libxkbregistry-dev libxkbcommon-dev libpixman-1-dev libudev-dev libseat-dev seatd libxcb-dri3-dev li
+bvulkan-dev libvulkan-volk-dev  vulkan-validationlayers-dev libvkfft-dev libgulkan-dev libegl-dev libgles2 libegl1-mesa-dev glslang-tools libi
+nput-bin libinput-dev libxcb-composite0-dev libavutil-dev libavcodec-dev libavformat-dev libxcb-ewmh2 libxcb-ewmh-dev libxcb-present-dev libxc
+b-icccm4-dev libxcb-render-util0-dev libxcb-res0-dev libxcb-xinput-dev libpango1.0-dev xdg-desktop-portal-wlr\
+
+git clone https://gitlab.freedesktop.org/xorg/lib/libxcb-errors.git
+cd libxcb-errors
+./autogen.sh
+git submodule update --init
+./autogen.sh
+sudo apt install xutils-dev
+./autogen.sh
+make
+sudo make install
+
+wget https://gitlab.freedesktop.org/wayland/wayland-protocols/-/releases/1.31/downloads/wayland-protocols-1.31.tar.xz
+wget https://gitlab.freedesktop.org/wayland/wayland/-/releases/1.22.0/downloads/wayland-1.22.0.tar.xz
+wget https://gitlab.freedesktop.org/emersion/libdisplay-info/-/releases/0.1.1/downloads/libdisplay-info-0.1.1.tar.xz
+
+sudo apt install edid-decode
+sudo apt install libvulkan-dev
+
+Install compiled at same place with distribution libs 
+meson setup --prefix=/usr --buildtype=release
+ninja
+sudo ninja install
+
+PkgConfig files was not installed
+Need to investigate for to compile hyprland from sources
+
+4. Download hyrpland binary
+https://gist.github.com/Vertecedoc4545/3b077301299c20c5b9b4db00f4ca6000
+https://wiki.hyprland.org/Getting-Started/Installation/
+
+https://github.com/hyprwm/Hyprland/releases
+copy the binary (Hyprland) to /usr/bin/.
+copy hyprctl to /usr/bin/.
+copy the wlroots .so (libwlroots.so.XX032) to /usr/lib/.
+copy the desktop entry (examples/hyprland.desktop) to /usr/share/wayland-sessions/
+the example config is in examples/hyprland.conf.
+For updating later on, you can overwrite the binaries (hyprctl, hyprland and libwlroots), you don’t need to update anything else.
+
+5. Apps on top of hypr
+sudo apt install waybar
+sudo apt install dunst
+sudo apt install fcitx5
+sudo apt -y install libpipewire-0.3-dev
+sudo apt -y install libinih-dev
+sudo apt -y install libgbm-dev
+sudo apt -y install libbasu-dev
+sudo apt -y install libelogind-dev
+sudo apt -y install elogind-dev
+sudo apt -y install libsystemd-dev
+sudo apt-get install qtbase5-dev
+
+git clone https://github.com/hyprwm/xdg-desktop-portal-hyprland.git
+cd xdg-desktop-portal-hyprland
+meson build --prefix=/usr
