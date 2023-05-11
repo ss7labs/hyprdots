@@ -1,0 +1,13 @@
+https://github.com/anthdm/.nvim
+https://www.youtube.com/watch?v=AzhSnM0uHvM - Why I Switched From VSCode To NeoVim - My Setup
+
+https://github.com/wbthomason/packer.nvim#bootstrapping
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+
+https://stackoverflow.com/questions/1764263/what-is-the-leader-in-a-vimrc-file
+The <Leader> key is mapped to \ by default.
+So if you have a map of <Leader>t, you can execute it by default with \+t.
+For more detail or re-assigning it using the mapleader variable, see
+
+vim.g.mapleader = " "
+
