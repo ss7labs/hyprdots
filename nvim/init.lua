@@ -1,6 +1,7 @@
 require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'ellisonleao/gruvbox.nvim'
+  use 'ThePrimeagen/vim-be-good'
   use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
